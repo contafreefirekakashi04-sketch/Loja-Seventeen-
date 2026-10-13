@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const helmet = require('helmet');
 const path = require('path');
+const { iniciarBanco } = require('./src/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,4 +26,11 @@ app.use('/api/pedidos', require('./src/routes/pedidos'));
 app.use('/api/pix', require('./src/routes/pix'));
 app.use('/api/admin', require('./src/routes/admin'));
 
-app.listen(PORT, () => console.log('SEVENTEEN CHEATS rodando na porta ' + PORT));
+iniciarBanco()
+  .then(() => {
+    app.listen(PORT, () => console.log('SEVENTEEN CHEATS rodando na porta ' + PORT));
+  })
+  .catch(err => {
+    console.error('Erro ao iniciar banco:', err);
+    process.exit(1);
+  });
