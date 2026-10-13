@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - SEVENTEEN CHEATS</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+<div class="logo">SEVENTEEN <span>CHEATS</span></div>
+<nav id="nav"></nav>
+</header>
+<div class="container">
+<h1>Painel Admin</h1>
+<p class="sub">Gerencie produtos, pedidos e configuracoes.</p>
+
+<div class="tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+<button class="btn ghost tab-btn" data-tab="produtos">Produtos</button>
+<button class="btn ghost tab-btn" data-tab="novo">Novo Produto</button>
+<button class="btn ghost tab-btn" data-tab="pedidos">Pedidos</button>
+<button class="btn ghost tab-btn" data-tab="config">Config</button>
+<button class="btn ghost tab-btn" data-tab="logs">Logs</button>
+</div>
+
+<div id="tab-produtos" class="tab-panel">
+<h2>Produtos cadastrados</h2>
+<div id="listaProdutos"></div>
+</div>
+
+<div id="tab-novo" class="tab-panel" style="display:none">
+<h2 id="tituloForm">Novo produto</h2>
+<form class="form" id="formProduto" style="max-width:100%">
+<input type="hidden" name="id" id="produtoId">
+<label>Nome</label>
+<input type="text" name="nome" required>
+<label>Descricao</label>
+<textarea name="descricao" rows="3"></textarea>
+<label>Link do Discord (o que o cliente recebe)</label>
+<input type="text" name="conteudo_entrega" placeholder="https://discord.gg/...">
+<label>Imagem (opcional)</label>
+<input type="file" name="imagem" accept="image/*">
+<label>Preco Diario (R$)</label>
+<input type="number" step="0.01" name="preco_diario" value="0">
+<label>Preco Semanal (R$)</label>
+<input type="number" step="0.01" name="preco_semanal" value="0">
+<label>Preco Mensal (R$)</label>
+<input type="number" step="0.01" name="preco_mensal" value="0">
+<label>Ativo</label>
+<select name="ativo"><option value="1">Sim</option><option value="0">Nao</option></select>
+<button class="btn full" style="margin-top:16px">Salvar</button>
+<div id="msgProduto"></div>
+</form>
+</div>
+
+<div id="tab-pedidos" class="tab-panel" style="display:none">
+<h2>Pedidos</h2>
+<div id="listaPedidos"></div>
+</div>
+
+<div id="tab-config" class="tab-panel" style="display:none">
+<h2>Configuracoes</h2>
+<form class="form" id="formConfig" style="max-width:100%">
+<label>Chave Pix</label>
+<input type="text" name="pix_chave" id="cfg_pix_chave">
+<label>Nome no Pix</label>
+<input type="text" name="pix_nome" id="cfg_pix_nome">
+<label>Cidade no Pix</label>
+<input type="text" name="pix_cidade" id="cfg_pix_cidade">
+<button class="btn full" style="margin-top:16px">Salvar config</button>
+<div id="msgConfig"></div>
+</form>
+<p class="sub" style="margin-top:16px">Obs: chave Pix, nome e cidade ficam no .env do servidor. Editar aqui salva no banco mas nao altera o .env - use como referencia.</p>
+</div>
+
+<div id="tab-logs" class="tab-panel" style="display:none">
+<h2>Logs de admin</h2>
+<div id="listaLogs"></div>
+</div>
+
+</div>
+<footer>SEVENTEEN CHEATS - painel admin</footer>
+<script src="/js/app.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>
